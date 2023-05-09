@@ -1,4 +1,5 @@
 import LoginPanel from '../LoginPanel/LoginPanel';
+import RegisterPanel from '../RegisterPanel/RegisterPanel';
 import lotus from '../../assets/lotus.png';
 
 export default function Navbar() {
@@ -13,9 +14,7 @@ export default function Navbar() {
       <div className="navbar-end">
         <div className="navbar-item">
           <div className="buttons">
-            <a className="button" style={{ backgroundColor: '#FA5252', border: 'none' }}>
-              <strong style={{ color: 'white' }}>Sign up</strong>
-            </a>
+            <RegisterPanel />
             <LoginPanel />
           </div>
         </div>
