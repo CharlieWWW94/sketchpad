@@ -9,7 +9,7 @@ export default function Canvas({ color, cap, width, drawType }) {
     setIsDrawing,
     setPrevCoords,
     shapeDraw,
-    lineDraw
+    lineDraw,
   ] = useCanvas(canvasRef);
 
   const markCanvas = (event) => {

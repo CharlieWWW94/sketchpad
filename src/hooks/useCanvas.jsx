@@ -9,8 +9,6 @@ export const useCanvas = (canvasRef) => {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    // canvas.width = document.body.clientWidth < 800 ? document.body.clientWidth : 800
-    // canvas.height = canvas.width * (600 / 800);
     const rect = canvas.getBoundingClientRect();
     canvas.width = rect.width;
     canvas.height = rect.height;
@@ -19,6 +17,8 @@ export const useCanvas = (canvasRef) => {
     initialContext.fillRect(0, 0, canvas.width, canvas.height);
     setCanvasContext(initialContext);
   }, [canvasContext, canvasRef]);
+
+  const returnCanvasAsString = () => canvasRef.current.toDataURL();
 
   const shapeDraw = (event) => {
     if (!isDrawing) return;
@@ -58,7 +58,8 @@ export const useCanvas = (canvasRef) => {
     setIsDrawing,
     setPrevCoords,
     shapeDraw,
-    lineDraw
+    lineDraw,
+    returnCanvasAsString
   ]
 
 
