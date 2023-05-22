@@ -1,67 +1,47 @@
+import HTTPWrapper from "../HTTPWrapper/HTTPWrapper";
+
 class AccountUtils {
-  // works
-  async createAccount(email, password) {
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        user: {
-          email,
-          password
-        }
-      })
-    }
-    try {
-      const res = await fetch('http://127.0.0.1:3000/users', options)
-      // const resJSON = await res.json();
-      console.log(res);
-    } catch(err) {
-      console.log(err)
+  async createAccount(username, password) {
+    const wrapper = new HTTPWrapper('POST', 'registrations', {
+      user: {
+        username,
+        password
+      }
+    })
+    const res = await wrapper.perform();
+
+    if (res.status === 200) {
+       return res;
+    } else {
+      return {message: "That didn't work."}
     }
   }
 
-  //works
-  async login(email, password) {
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        user: {
-          email,
-          password
-        }
-      })
-    }
-    try {
-      const res = await fetch('http://127.0.0.1:3000/users/sign_in', options)
-      // const resJSON = await res.json();
-      return res
-    } catch(err) {
-      console.log(err)
+  async login(username, password) {
+    const wrapper = new HTTPWrapper('POST', 'sessions', {
+      user: {
+        username,
+        password
+      }
+    })
+    const res = await wrapper.perform();
+
+    if (res.status === 200) {
+       return res;
+    } else {
+      return {message: "That didn't work."}
     }
   }
-  // Also works
-  async logout(header) {
-    const options = {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        'authorization': header
-      },
-      // body: JSON.stringify({
-      //   user: {
-      //     email,
-      //   }
-      // })
-    }
 
-    const res = await fetch('http://127.0.0.1:3000/users/sign_out', options)
-    const resJSON = await res.json();
-    return resJSON;
+  async logout(user_id) {
+    const wrapper = new HTTPWrapper('DELETE', `sessions/${user_id}`, {})
+    const res = await wrapper.perform();
+
+    if (res.status === 200) {
+       return res;
+    } else {
+      return {message: "That didn't work."}
+    }
   }
 }
 

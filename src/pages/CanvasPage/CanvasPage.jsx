@@ -1,6 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import PageContainer from "../../components/PageContainer/PageContainer";
+import Navbar from "../../components/Navbar/Navbar";
 import Canvas from "../../components/Canvas/Canvas";
 import DrawPanel from "../../components/DrawPanel/DrawPanel";
+import FrameUtils from "../../utils/AccountUtils/FrameUtils";
+import AccountUtils from "../../utils/AccountUtils/AccountUtils";
 import "./CanvasPage.scss"
 
 const CanvasPage = () => {
@@ -9,27 +13,43 @@ const CanvasPage = () => {
   const [cap, setCap] = useState('round');
   const [drawType, setDrawType] = useState('pen');
 
+  const test = async () => {
+    // const res = await AccountUtils.login("test3", "12345AAAAA")
+    // console.log("hi", res);
+    // const userID = res.id
+    // const logoutRes = await AccountUtils.logout(userID)
+    // const createRes = await FrameUtils.createFrame("New Frame", 5000, 5000, "hellooooo", header);
+  }
+
+
+  useEffect(() => {
+    test();
+  }, []);
+
   return (
-    <div className="page columns is-gapless">
-      <div className="column is-three-quarters" style={{ display: 'flex', backgroundColor: '#151617', padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-        <div style={{ width: '80%', height: '80%' }}>
-          <Canvas
-            color={color}
-            cap={cap}
+    <PageContainer>
+      <div className="page columns is-gapless">
+        <div className="column is-three-quarters canvas-page-container">
+          <div className="canvas-container">
+            <Canvas
+              color={color}
+              cap={cap}
+              width={width}
+              drawType={drawType}
+            />
+          </div>
+        </div>
+        <div className="column">
+          <DrawPanel
+            setColor={setColor}
+            setWidth={setWidth}
+            setCap={setCap}
+            setDrawType={setDrawType}
             width={width}
-            drawType={drawType}
           />
         </div>
       </div>
-      <div className="column">
-        <DrawPanel
-          setColor={setColor}
-          setWidth={setWidth}
-          setCap={setCap}
-          setDrawType={setDrawType}
-        />
-      </div>
-    </div>
+    </PageContainer >
   )
 };
 

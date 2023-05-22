@@ -1,32 +1,32 @@
 
 
-export default function DrawPanel({ setColor, setWidth, setCap, setDrawType }) {
+export default function DrawPanel({ setColor, setWidth, setCap, setDrawType, width }) {
 
   const drawType = (
     <>
-      <div className="panel-block">
-        <p className="label">Draw Type</p>
-        <form className="form">
-          <select onChange={(e) => setDrawType(e.target.value)}>
+      <div style={{ padding: 10 }}>
+        <p style={{ color: 'white', fontSize: 14, fontWeight: 'bold' }}>Draw Type</p>
+        <form>
+          <select style={{ width: '100%', color: 'white', border: 'none', backgroundColor: '#242323' }} onChange={(e) => setDrawType(e.target.value)}>
             <option value="pen">Pen</option>
             <option value="shape">Shape</option>
           </select>
         </form>
       </div>
-      <div className="panel-block">
-        <p>Color:</p>
-        <input onChange={(e) => setColor(e.target.value)} type="color" className="input"></input>
+      <div style={{ paddingLeft: 10, paddingRight: 10 }}>
+        <p style={{ color: 'white', fontSize: 14, fontWeight: 'bold' }}>Color Select</p>
+        <input style={{ width: '100%', backgroundColor: '#242323', border: 'none', height: 22, padding: 3 }} onChange={(e) => setColor(e.target.value)} type="color"></input>
       </div>
     </>
   )
 
   const shapeOptions = (
     <>
-      <div className="panel-block">
-        <p className="label">Shape Options</p>
+      <div>
+        <p style={{ color: 'black' }}>Shape Options</p>
       </div>
-      <div className="panel-block">
-        <p>Shape</p>
+      <div>
+        <p style={{ color: 'black' }}>Shape</p>
         <div>
 
         </div>
@@ -38,18 +38,26 @@ export default function DrawPanel({ setColor, setWidth, setCap, setDrawType }) {
 
   const penOptions = (
     <>
-      <div className="panel-block">
-        <p className="label">Pen Options</p>
+      <div>
+        <p style={{ color: 'white', fontSize: 14, fontWeight: 'bold', padding: 10 }}>Pen Options</p>
       </div>
-      <div className="panel-block">
-        <p>Width:</p>
-        <input onChange={(e) => setWidth(e.target.value)} className="input"></input>
+      <div style={{ paddingLeft: 10, paddingRight: 10 }}>
+        <p style={{ color: 'white', fontSize: 14 }}>Width:
+          <span style={{ backgroundColor: '#242323', fontSize: 12, margin: 3, padding: 3, borderRadius: 2 }}>{width}</span>
+        </p>
+        <input
+          style={{ width: '100%', height: 20, background: 'red', }}
+          onChange={(e) => setWidth(e.target.value)}
+          type="range"
+          min="1" max="100"
+          value={width}>
+        </input>
       </div>
 
-      <div className="panel-block">
-        <p>Cap:</p>
-        <form className="form">
-          <select onChange={(e) => setCap(e.target.value)}>
+      <div style={{ paddingLeft: 10, paddingRight: 10 }}>
+        <p style={{ color: 'white', fontSize: 14 }}>Cap:</p>
+        <form>
+          <select style={{ width: '100%', color: 'white', border: 'none', backgroundColor: '#242323' }} onChange={(e) => setCap(e.target.value)}>
             <option value="round">Round</option>
             <option value="square">Square</option>
             <option value="butt">Butt</option>
@@ -61,14 +69,14 @@ export default function DrawPanel({ setColor, setWidth, setCap, setDrawType }) {
 
 
   return (
-    <div className="panel" style={{ display: 'flex', flexDirection: 'column' }}>
-      <p className="panel-heading" >
+    <div style={{ display: 'flex', flexDirection: 'column', backgroundColor: '#424141', height: '100%' }}>
+      <p style={{ color: 'white', fontWeight: 'bold', backgroundColor: '#242323', padding: 10 }}>
         Your Canvas
       </p>
       {drawType}
       {penOptions}
-      {shapeOptions}
-      <div style={{ backgroundColor: '#3f4042', display: "flex" }} >
+      <p style={{ color: 'white', fontSize: 14, fontWeight: 'bold', padding: 10 }}>Shape Select</p>
+      <div style={{ backgroundColor: '#242323', display: "flex", padding: 5 }} >
         <svg style={{ backgroundColor: 'white', margin: 5, height: 50, borderRadius: 3 }} viewBox="0 0 100 100">
           <path
             d="
@@ -94,6 +102,11 @@ export default function DrawPanel({ setColor, setWidth, setCap, setDrawType }) {
            Q 90,60 50,90
            Q 10,60 10,30 z" />
         </svg>
+      </div>
+      <div style={{ height: '100%', display: 'flex', alignItems: 'flex-end', padding: 10 }}>
+        <button className="button" style={{ backgroundColor: '#FA5252', color: 'white', border: 'none', width: '100%' }}>
+          <strong>Save Canvas</strong>
+        </button>
       </div>
     </div>
   )

@@ -1,21 +1,26 @@
 import LoginPanel from '../LoginPanel/LoginPanel';
 import RegisterPanel from '../RegisterPanel/RegisterPanel';
+import { Link } from 'react-router-dom';
 import lotus from '../../assets/lotus.png';
+import { useState } from 'react';
+import './Navbar.scss';
 
 export default function Navbar() {
-  return (
-    <nav style={{ backgroundColor: '#2F4858' }} className="navbar" role="navigation" aria-label="main navigation">
-      <div className="navbar-brand">
-        <a className="navbar-item">
-          <img src={lotus} style={{ width: 40, minHeight: 40 }} />
-        </a>
-      </div >
+  // This can be removed now I've added the store;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  return (
+    <nav className="navbar navbar-color" role="navigation" aria-label="main navigation">
+      <div className="navbar-brand">
+        <Link to="/" className="navbar-item">
+          <img src={lotus} className='lotus-image' />
+        </Link>
+      </div >
       <div className="navbar-end">
         <div className="navbar-item">
           <div className="buttons">
             <RegisterPanel />
-            <LoginPanel />
+            <LoginPanel setLoginStatus={setIsLoggedIn} />
           </div>
         </div>
       </div>

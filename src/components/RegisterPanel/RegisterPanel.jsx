@@ -2,12 +2,24 @@ import { useState } from "react"
 import lotus from '../../assets/lotus.png';
 
 export default function RegisterPanel() {
-
+  const [inputs, setInputs] = useState({})
   const [isActive, setIsActive] = useState(false);
   const toggleIsActive = () => isActive ? setIsActive(false) : setIsActive(true);
   const dropDownClasses = () => {
     return isActive ? "dropdown is-right is-active" : "dropdown is-right"
   };
+
+  const submitRegistration = async (e) => {
+    e.preventDefault();
+    console.log(inputs);
+  }
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setInputs(values => ({ ...values, [name]: value }))
+  }
+
 
   return (
     <div className={dropDownClasses()} style={{ marginRight: 10 }}>
@@ -28,24 +40,24 @@ export default function RegisterPanel() {
                 Sign up to access all our great features <strong>completely free</strong>.
               </div>
             </article>
-            <form className="form" style={{ width: '100%' }}>
+            <form onSubmit={submitRegistration} className="form" style={{ width: '100%' }}>
               <div>
                 <label className="label" style={{ color: '#2F4858' }} >Email
                   <span style={{ color: '#FA5252' }}>*</span>
                 </label>
-                <input className="input" type="text"></input>
+                <input className="input" name="username" onChange={handleChange} type="text"></input>
               </div>
               <div style={{ marginTop: 10 }}>
                 <label className="label" style={{ color: '#2F4858' }}>Password
                   <span style={{ color: '#FA5252' }}>*</span>
                 </label>
-                <input className="input" type="password"></input>
+                <input className="input" name="pw" onChange={handleChange} type="password"></input>
               </div>
               <div style={{ marginTop: 10 }}>
                 <label className="label" style={{ color: '#2F4858' }}>Confirm Password
                   <span style={{ color: '#FA5252' }}>*</span>
                 </label>
-                <input className="input" type="password"></input>
+                <input className="input" name="pwc" onChange={handleChange} type="password"></input>
               </div>
               <button className="button" style={{ backgroundColor: '#FA5252', border: "none", marginTop: 20, width: "100%" }} type="submit">
                 <strong style={{ color: "white" }}>Submit</strong>
