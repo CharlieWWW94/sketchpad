@@ -6,9 +6,9 @@ export default function Hero() {
       <h1 className="title is-1 hero-title">
         <span className="hero-span" style={{ fontSize: 200 }}>
           LotusPad
-          {/* < p className="subtitle is-3 has-text-white hero-subtitle">
+          < p className="subtitle is-3 has-text-white hero-subtitle">
             Unleash Your Creativity.
-          </p> */}
+          </p>
         </span>
       </h1 >
     </section>

@@ -1,7 +1,12 @@
 import { useState } from "react"
 import lotus from '../../assets/lotus.png';
+import { createAccount } from "../../redux/slices/userSlice";
+import { useDispatch } from "react-redux";
 
 export default function RegisterPanel() {
+  console.log('hi')
+  const dispatch = useDispatch();
+  dispatch(createAccount('hello', '123'));
   const [inputs, setInputs] = useState({})
   const [isActive, setIsActive] = useState(false);
   const toggleIsActive = () => isActive ? setIsActive(false) : setIsActive(true);

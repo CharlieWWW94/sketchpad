@@ -4,9 +4,7 @@ import lotus from '../../assets/lotus.png';
 export default function LoginPanel() {
 
   const [isActive, setIsActive] = useState(false);
-
   const toggleIsActive = () => isActive ? setIsActive(false) : setIsActive(true);
-
   const dropDownClasses = () => {
     return isActive ? "dropdown is-right is-active" : "dropdown is-right"
   };
