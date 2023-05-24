@@ -4,9 +4,7 @@ import { createAccount } from "../../redux/slices/userSlice";
 import { useDispatch } from "react-redux";
 
 export default function RegisterPanel() {
-  console.log('hi')
   const dispatch = useDispatch();
-  dispatch(createAccount('hello', '123'));
   const [inputs, setInputs] = useState({})
   const [isActive, setIsActive] = useState(false);
   const toggleIsActive = () => isActive ? setIsActive(false) : setIsActive(true);
@@ -16,14 +14,43 @@ export default function RegisterPanel() {
 
   const submitRegistration = async (e) => {
     e.preventDefault();
-    console.log(inputs);
-  }
+    const { pw, pwc, username } = inputs;
+    if (pw === pwc) {
+      dispatch(createAccount(username, pw));
+    }
+  };
 
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setInputs(values => ({ ...values, [name]: value }))
   }
+
+  const registrationForm = (
+    <form onSubmit={submitRegistration} className="form" style={{ width: '100%' }}>
+      <div>
+        <label className="label" style={{ color: '#2F4858' }} >Email
+          <span style={{ color: '#FA5252' }}>*</span>
+        </label>
+        <input className="input" name="username" onChange={handleChange} type="text"></input>
+      </div>
+      <div style={{ marginTop: 10 }}>
+        <label className="label" style={{ color: '#2F4858' }}>Password
+          <span style={{ color: '#FA5252' }}>*</span>
+        </label>
+        <input className="input" name="pw" onChange={handleChange} type="password"></input>
+      </div>
+      <div style={{ marginTop: 10 }}>
+        <label className="label" style={{ color: '#2F4858' }}>Confirm Password
+          <span style={{ color: '#FA5252' }}>*</span>
+        </label>
+        <input className="input" name="pwc" onChange={handleChange} type="password"></input>
+      </div>
+      <button className="button" style={{ backgroundColor: '#FA5252', border: "none", marginTop: 20, width: "100%" }} type="submit">
+        <strong style={{ color: "white" }}>Submit</strong>
+      </button>
+    </form>
+  )
 
 
   return (
@@ -45,29 +72,7 @@ export default function RegisterPanel() {
                 Sign up to access all our great features <strong>completely free</strong>.
               </div>
             </article>
-            <form onSubmit={submitRegistration} className="form" style={{ width: '100%' }}>
-              <div>
-                <label className="label" style={{ color: '#2F4858' }} >Email
-                  <span style={{ color: '#FA5252' }}>*</span>
-                </label>
-                <input className="input" name="username" onChange={handleChange} type="text"></input>
-              </div>
-              <div style={{ marginTop: 10 }}>
-                <label className="label" style={{ color: '#2F4858' }}>Password
-                  <span style={{ color: '#FA5252' }}>*</span>
-                </label>
-                <input className="input" name="pw" onChange={handleChange} type="password"></input>
-              </div>
-              <div style={{ marginTop: 10 }}>
-                <label className="label" style={{ color: '#2F4858' }}>Confirm Password
-                  <span style={{ color: '#FA5252' }}>*</span>
-                </label>
-                <input className="input" name="pwc" onChange={handleChange} type="password"></input>
-              </div>
-              <button className="button" style={{ backgroundColor: '#FA5252', border: "none", marginTop: 20, width: "100%" }} type="submit">
-                <strong style={{ color: "white" }}>Submit</strong>
-              </button>
-            </form>
+            {registrationForm}
           </div>
         </div>
       </div>

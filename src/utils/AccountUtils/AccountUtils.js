@@ -10,7 +10,7 @@ class AccountUtils {
     })
     const res = await wrapper.perform();
 
-    if (res.status === 200) {
+    if (res.status === 201) {
        return res;
     } else {
       return {message: "That didn't work."}

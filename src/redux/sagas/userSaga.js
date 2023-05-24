@@ -4,7 +4,9 @@ import AccountUtils from '../../utils/AccountUtils/AccountUtils';
 
 export function* createAccountRequest(action) {
   console.log("SAGA HAS BEEN CALLED");
-  console.log(action.payload);
+  const {username, password} = action.payload;
+  const res = yield call(AccountUtils.createAccount, username, password);
+  console.log('here is the res', res);
   yield put(logIn());
 }
 
