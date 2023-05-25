@@ -28,3 +28,10 @@ export const createAccount = createAction('user/createAccountRequest', (username
     password
   }
 }));
+
+export const login = createAction('user/createAccountRequest', (username, password) => ({
+  payload: {
+    username,
+    password
+  }
+}));
