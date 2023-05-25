@@ -29,7 +29,7 @@ export default function RegisterPanel() {
   const registrationForm = (
     <form onSubmit={submitRegistration} className="form" style={{ width: '100%' }}>
       <div>
-        <label className="label" style={{ color: '#2F4858' }} >Email
+        <label className="label" style={{ color: '#2F4858' }} >Username
           <span style={{ color: '#FA5252' }}>*</span>
         </label>
         <input className="input" name="username" onChange={handleChange} type="text"></input>

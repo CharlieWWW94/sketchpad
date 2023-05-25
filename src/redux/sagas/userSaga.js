@@ -3,17 +3,15 @@ import { logIn } from '../slices/userSlice';
 import AccountUtils from '../../utils/AccountUtils/AccountUtils';
 
 export function* createAccountRequest(action) {
-  console.log("SAGA HAS BEEN CALLED");
+  // Needs try catch
   const {username, password} = action.payload;
   const res = yield call(AccountUtils.createAccount, username, password);
-  console.log('here is the res', res);
 }
 
 export function* loginRequest(action) {
-  console.log("LOGIN SAGA HAS BEEN CALLED");
+  // Needs try catch
   const {username, password} = action.payload;
   const res = yield call(AccountUtils.login, username, password);
-  console.log('here is the login res', res);
   yield put(logIn());
 }
 

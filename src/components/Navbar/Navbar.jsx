@@ -2,12 +2,26 @@ import LoginPanel from '../LoginPanel/LoginPanel';
 import RegisterPanel from '../RegisterPanel/RegisterPanel';
 import { Link } from 'react-router-dom';
 import lotus from '../../assets/lotus.png';
-import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectLoggedInState } from '../../redux/slices/userSlice';
 import './Navbar.scss';
 
 export default function Navbar() {
-  // This can be removed now I've added the store;
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isLoggedIn = useSelector(state => selectLoggedInState(state))
+  console.log('here', isLoggedIn);
+
+  const userButtons = (
+    <button className="button">
+      User
+    </button>
+  );
+
+  const noUserButtons = (
+    <>
+      <RegisterPanel />
+      <LoginPanel />
+    </>
+  )
 
   return (
     <nav className="navbar navbar-color" role="navigation" aria-label="main navigation">
@@ -19,8 +33,7 @@ export default function Navbar() {
       <div className="navbar-end">
         <div className="navbar-item">
           <div className="buttons">
-            <RegisterPanel />
-            <LoginPanel setLoginStatus={setIsLoggedIn} />
+            {isLoggedIn ? userButtons : noUserButtons}
           </div>
         </div>
       </div>
