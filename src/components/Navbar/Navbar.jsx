@@ -1,20 +1,25 @@
 import LoginPanel from '../LoginPanel/LoginPanel';
 import RegisterPanel from '../RegisterPanel/RegisterPanel';
+import ProfilePanel from '../ProfilePanel/ProfilePanel';
 import { Link } from 'react-router-dom';
 import lotus from '../../assets/lotus.png';
 import { useSelector } from 'react-redux';
 import { selectLoggedInState } from '../../redux/slices/userSlice';
+import { GiNotebook } from 'react-icons/gi';
 import './Navbar.scss';
 
 export default function Navbar() {
   const isLoggedIn = useSelector(state => selectLoggedInState(state))
-  console.log('here', isLoggedIn);
 
   const userButtons = (
-    <button className="button">
-      User
-    </button>
-  );
+    <>
+      <button className='button has-text-weight-bold is-rounded' style={{ backgroundColor: '#FA5252', border: 'none' }}>
+        My Pads
+        <GiNotebook size={25} style={{ marginLeft: 10 }} />
+      </button>
+      <ProfilePanel />
+    </>
+  )
 
   const noUserButtons = (
     <>
