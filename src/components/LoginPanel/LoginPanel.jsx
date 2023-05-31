@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useDispatch } from "react-redux";
 import { loginToAccount } from "../../redux/slices/userSlice";
 import lotus from '../../assets/lotus.png';
+import './LoginPanel.scss'
 
 export default function LoginPanel() {
   const dispatch = useDispatch();

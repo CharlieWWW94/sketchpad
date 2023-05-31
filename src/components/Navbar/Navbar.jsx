@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import lotus from '../../assets/lotus.png';
 import { useSelector } from 'react-redux';
 import { selectLoggedInState } from '../../redux/slices/userSlice';
-import { GiNotebook } from 'react-icons/gi';
+import MyPadsButton from '../MyPadsButton/MyPadsButton';
 import './Navbar.scss';
 
 export default function Navbar() {
@@ -13,10 +13,7 @@ export default function Navbar() {
 
   const userButtons = (
     <>
-      <button className='button has-text-weight-bold is-rounded' style={{ backgroundColor: '#FA5252', border: 'none' }}>
-        My Pads
-        <GiNotebook size={25} style={{ marginLeft: 10 }} />
-      </button>
+      <MyPadsButton />
       <ProfilePanel />
     </>
   )

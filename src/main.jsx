@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+import 'bulma'
+// import './components/LoginPanel/LoginPanel.scss'
 import store from './redux/store/store.js'
 import { Provider } from 'react-redux'
 import { RouterProvider } from 'react-router-dom';
